@@ -1,1 +1,66 @@
-
+<style>
+    :root{
+    --bg:#141311;
+    --panel:#1d1b18;
+    --panel-line:#2c2925;
+    --ink:#e9e4d8;
+    --muted:#867f72;
+    --amber:#e2a33d;
+    --lcd-bg:#0c1410;
+    --lcd-glow:#6fe08a;
+    --lcd-glow-dim:#2c5c3a;
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Rajdhani',sans-serif;}
+    body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+    .deck{width:100%;max-width:460px;background:var(--panel);border:1px solid var(--panel-line);
+    border-radius:14px;padding:22px 22px 18px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.03);}
+    .deck-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+    .brand{display:flex;align-items:center;gap:10px;}
+    .brand-dot{width:9px;height:9px;border-radius:50%;background:var(--lcd-glow);
+    box-shadow:0 0 8px var(--lcd-glow);animation:pulse 2.4s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+    .brand-name{font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;}
+    .brand-sub{color:var(--muted);font-size:11px;font-family:'IBM Plex Mono',monospace;}
+    .lcd-shell{background:linear-gradient(180deg,#232019,#181510);border-radius:8px;padding:12px;
+    border:1px solid #322d24;margin-bottom:16px;}
+    .lcd-screen{background:var(--lcd-bg);border-radius:4px;padding:14px 12px;overflow:hidden;
+    box-shadow:inset 0 2px 10px rgba(0,0,0,.7);}
+    .lcd-row{font-family:'IBM Plex Mono',monospace;font-size:19px;letter-spacing:.14em;
+    color:var(--lcd-glow);text-shadow:0 0 6px rgba(111,224,138,.65), 0 0 1px rgba(111,224,138,.9);
+    white-space:pre;height:26px;line-height:26px;overflow:hidden;}
+    .lcd-row.dim{color:var(--lcd-glow-dim);text-shadow:none;font-size:15px;letter-spacing:.12em;}
+    .field-row{display:flex;gap:8px;margin-bottom:18px;}
+    #msgInput{flex:1;background:#100f0d;border:1px solid #322d24;border-radius:6px;color:var(--ink);
+    padding:10px 12px;font-family:'IBM Plex Mono',monospace;font-size:13px;outline:none;}
+    #msgInput:focus{border-color:var(--amber);}
+    .btn-send{background:var(--amber);color:#1a1409;border:none;border-radius:6px;padding:0 18px;
+    font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    font-size:13px;cursor:pointer;}
+    .btn-send:hover{filter:brightness(1.08);}
+    .section-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);
+    letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px;display:flex;align-items:center;gap:8px;}
+    .section-label::after{content:'';flex:1;height:1px;background:var(--panel-line);}
+    .led-bank{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px;}
+    .led-switch{background:#100f0d;border:1px solid #322d24;border-radius:8px;padding:10px 6px;
+    text-align:center;cursor:pointer;user-select:none;transition:border-color .15s,background .15s;}
+    .led-switch:hover{border-color:#463f33;}
+    .led-bulb{width:16px;height:16px;border-radius:50%;margin:0 auto 6px;background:#2a2622;
+    border:1px solid #000;transition:box-shadow .2s,background .2s;}
+    .led-switch.on .led-bulb{box-shadow:0 0 10px 2px var(--bulb-color);}
+    .led-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);
+    letter-spacing:.08em;text-transform:uppercase;}
+    .led-switch.on .led-label{color:var(--ink);}
+    .readouts{display:flex;gap:10px;margin-bottom:14px;}
+    .readout{flex:1;background:#100f0d;border:1px solid #322d24;border-radius:8px;padding:10px 12px;}
+    .readout-val{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:500;}
+    .readout-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);
+    letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+    .reminder-line{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);
+    background:#100f0d;border:1px solid #322d24;border-radius:8px;padding:8px 12px;margin-bottom:14px;}
+    .reminder-line.active{color:var(--amber);border-color:#4a3a1f;}
+    .hint{color:var(--muted);font-size:11.5px;font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+    .hint code{color:var(--amber);}
+    @media (prefers-reduced-motion:reduce){.brand-dot{animation:none;}}
+    </style>
