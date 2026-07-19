@@ -1,4 +1,5 @@
 //<script>
+const ESP32_IP = "http://192.168.0.100";
 const LED_META = [
     { name: "red", color: "#ff4040" },
     { name: "green", color: "#4dff4d" },
@@ -19,7 +20,9 @@ const bank = document.getElementById('ledBank');
     const el = bank.children[i];
     const turningOn = !el.classList.contains('on');
     try {
-        await fetch('/led?c=' + name + '&s=' + (turningOn ? 'on' : 'off'));
+        
+        await fetch(ESP32_IP + '/led?c=' + name + '&s=' + (turningOn ? 'on' : 'off')); //changed
+        
         refreshStatus();
     } catch (e) { /* network hiccup, next poll resyncs */ }
     }
@@ -28,7 +31,7 @@ const bank = document.getElementById('ledBank');
     e.preventDefault();
     const input = document.getElementById('msgInput');
     const val = input.value;
-    fetch('/set?msg=' + encodeURIComponent(val)).then(() => {
+    fetch(ESP32_IP + '/set?msg=' + encodeURIComponent(val)).then(() => { //changed
         input.value = '';
         input.focus(); // clicking "Send" moves focus to the button by default — pull it back
         refreshStatus();
@@ -49,7 +52,7 @@ const bank = document.getElementById('ledBank');
 
     async function refreshStatus() {
     try {
-        const res = await fetch('/status');
+        const res = await fetch(ESP32_IP + '/status');//changed
         const data = await res.json();
         renderRow0(data.msg);
         document.getElementById('lcdRow1').textContent =
