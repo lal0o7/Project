@@ -1,6 +1,11 @@
 //<script>
-    const LED_META = LED_META_JSON;
-    const bank = document.getElementById('ledBank');
+const LED_META = [
+    { name: "red", color: "#ff4040" },
+    { name: "green", color: "#4dff4d" },
+    { name: "blue", color: "#4da6ff" },
+    { name: "yellow", color: "#ffd633" }
+];
+const bank = document.getElementById('ledBank');
     LED_META.forEach((l, i) => {
     const el = document.createElement('div');
     el.className = 'led-switch';
