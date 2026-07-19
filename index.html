@@ -1,12 +1,86 @@
-// ---------------------------------------------------------------------------
-    // Web page — a small "control deck" themed around the physical device.
-    // ---------------------------------------------------------------------------
-    String buildPage() {
-    String page = R"=====(
-    <!DOCTYPE html>
-    <html>
-    <head>
+<!DOCTYPE html>
+<html>
+
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ESP32 LCD Deck</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="deck">
+    <div class="deck-head">
+        <div class="brand">
+            <div class="brand-dot"></div>
+            <div>
+                <div class="brand-name">Control Deck</div>
+                <div class="brand-sub" id="ipLine">ESP32 &middot; 16x2</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lcd-shell">
+        <div class="lcd-screen">
+            <div class="lcd-row" id="lcdRow0">Hello World!</div>
+            <div class="lcd-row dim" id="lcdRow1">--:-- -- Tmp:--.-C</div>
+        </div>
+    </div>
+
+    <div class="field-row">
+        <form id="msgForm" style="display:flex;flex:1;gap:8px;">
+            <input
+                id="msgInput"
+                name="msg"
+                type="text"
+                maxlength="80"
+                placeholder="Message, LED command, or reminder..."
+                autocomplete="off">
+
+            <button class="btn-send" type="submit">Send</button>
+        </form>
+    </div>
+
+    <div class="section-label">LED bank</div>
+    <div class="led-bank" id="ledBank"></div>
+
+    <div class="section-label">Readouts</div>
+
+    <div class="readouts">
+        <div class="readout">
+            <div class="readout-val" id="timeVal">--:--</div>
+            <div class="readout-label">Time</div>
+        </div>
+
+        <div class="readout">
+            <div class="readout-val" id="tempVal">--.-°C</div>
+            <div class="readout-label">Temperature</div>
+        </div>
+    </div>
+
+    <div class="reminder-line" id="reminderLine">
+        No reminder set
+    </div>
+
+    <div class="hint">
+        LED: include a color + on/off,
+        e.g. <code>turn on red</code>,
+        <code>turn off all</code>,
+        <code>green on for 5 second</code>.
+        <br>
+
+        Reminder:
+        <code>remind me at 3:40 to drink water</code>.
+        Say <code>got it</code> to clear an alert.
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
